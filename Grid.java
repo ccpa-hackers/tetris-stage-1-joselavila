@@ -30,7 +30,7 @@ public class Grid extends JPanel {
   
   public void setShape(ZShape zShape) {
     z = zShape;
-    z.grid = this;
+     z.grid = this;
     i = null;
     s = null;
     repaint();
@@ -42,19 +42,19 @@ public class Grid extends JPanel {
     if (s != null) {
       moved = s.moveDown();
     }
-    if (i != null) {
+    if (i != null){
       moved = i.moveDown();
     }
-    
-    if (z != null) {
+    if(z != null){
       moved = z.moveDown();
     }
-    
     if (moved) {
       repaint();
     }
-    
+
     return moved;
+    
+    
   }
   
   public boolean moveLeft() {
@@ -66,7 +66,7 @@ public class Grid extends JPanel {
     
     // Uncomment this to test your IShape.moveLeft() method.
      if (i != null) {
-       moved = i.moveLeft();
+      moved = i.moveLeft();
      }
      
     // Uncomment this to test your ZShape.moveLeft() method.
@@ -89,14 +89,14 @@ public class Grid extends JPanel {
     }
     
     // Uncomment this to test your IShape.moveRight() method.
-     if (i != null) {
-       moved = i.moveRight();
+    if (i != null) {
+      moved = i.moveRight();
      }
      
     // Uncomment this to test your ZShape.moveRight() method.
      if (z != null) {
        moved = z.moveRight();
-    }
+     }
      
     if (moved) {
       repaint();
@@ -115,12 +115,12 @@ public class Grid extends JPanel {
     // Uncomment this to test your IShape.rotate() method.
     if (i != null) {
        moved = i.rotate();
-    }
+     }
      
     // Uncomment this to test your ZShape.rotate() method.
-    if (z != null) {
-      moved = z.rotate();
-    }
+     if (z != null) {
+       moved = z.rotate();
+     }
     
     if (moved) {
       repaint();
