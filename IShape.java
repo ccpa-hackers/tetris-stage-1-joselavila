@@ -11,40 +11,84 @@ public class IShape {
   Grid grid;
   
   public void initPointsFromOrigin(int initCol, int initRow) {
-    // TODO: start here
     colOrigin = initCol;
     rowOrigin = initRow;
     col0 = initCol;
     row0 = initRow + 1;
     col1 = initCol;
-    row1 = initRow -1;
+    row1 = initRow - 1;
     col2 = initCol;
-    row2 = initRow -2;
+    row2 = initRow - 2;
     direction = 0;
   }
-  public boolean moveDown() {
-    boolean down =
-      grid.isEmpty(col0, row0 +1) &&
-      grid.isInBounds(col0, row0 +1);
-    boolean right =
-      grid.isEmpty(col0, row0 +1) &&
-      grid.isInBounds(col0, row0 +1);
-    boolean left =
-      grid.isEmpty(col0, row0 +1) &&
-      grid.isInBounds(col0, row0 +1);
-      
-    if (down && right && left) {
-      ++rowOrigin;
-      ++row0;
-      ++row1;
-      ++row2;
-
-      return true;
+  public boolean moveDown(){
+    if(direction==0){
+      boolean low0 = 
+        grid.isEmpty(col0, row0 + 1) &&
+        grid.isInBounds(col0, row0 +1);
+      if(low0){
+        ++row0;
+        ++rowOrigin;
+        ++row1;
+        ++row2;
+        return true;
+      }
+    }else if(direction == 1){
+      boolean low0 =
+        grid.isEmpty(col0, row0 + 1)&&
+        grid.isInBounds(col0, row0 + 1);
+      boolean lowO = 
+        grid.isEmpty(colOrigin, rowOrigin + 1) &&
+        grid.isInBounds(colOrigin, rowOrigin + 1);
+      boolean low1 = 
+        grid.isEmpty(col1, row1 +1) &&
+        grid.isInBounds(col1, row1 +1);
+      boolean low2 =
+        grid.isEmpty(col2, row2 + 1)&&
+        grid.isInBounds(col2, row2 + 1);
+      if(low0 && lowO && low1 && low2){
+        ++row0;
+        ++rowOrigin;
+        ++row1;
+        ++row2;
+        return true;
+      }
+    }else if(direction == 2){
+      boolean low2 = 
+        grid.isEmpty(col2, row2 + 1) &&
+        grid.isInBounds(col2, row2 +1);
+      if(low2){
+        ++row0;
+        ++rowOrigin;
+        ++row1;
+        ++row2;
+        return true;
+      }
+    }else if(direction == 3){
+      boolean low0 =   
+        grid.isEmpty(col0, row0 + 1)&&
+        grid.isInBounds(col0, row0 + 1);
+      boolean lowO = 
+        grid.isEmpty(colOrigin, rowOrigin + 1) &&
+        grid.isInBounds(colOrigin, rowOrigin + 1);
+      boolean low1 = 
+        grid.isEmpty(col1, row1 +1) &&
+        grid.isInBounds(col1, row1 +1);
+      boolean low2 =
+        grid.isEmpty(col2, row2 + 1)&&
+        grid.isInBounds(col2, row2 + 1);
+      if(low0 && lowO && low1 && low2){
+        ++row0;
+        ++rowOrigin;
+        ++row1;
+        ++row2;
+        return true;
+      }
     }
     return false;
   }
   public boolean moveLeft() {
- 
+    //*******direction 0*************
     if(direction == 0){
       boolean left0 =
         grid.isEmpty(col0 - 1, row0) &&
@@ -65,8 +109,7 @@ public class IShape {
         --col2;
         return true;
       }
-        
-    
+    //*******direction 1*************
     }else if (direction == 1){
       boolean left0 =
         grid.isEmpty(col0 - 1, row0) &&
@@ -78,7 +121,7 @@ public class IShape {
         --col2;
         return true;
       }
-
+      //*******direction 2*************
     }else if (direction == 2){
       boolean low0 =   
         grid.isEmpty(col0 - 1, row0 )&&
@@ -99,7 +142,7 @@ public class IShape {
         --col2;
         return true;
       }
-
+    //*******direction 3*************
     }else if (direction == 3){
       boolean left2 = 
         grid.isEmpty(col2 - 1, row2)&&
@@ -136,7 +179,7 @@ public class IShape {
         ++col2;
         return true;
       }
-  
+    //*******direction 1*************
     }else if (direction == 1){
       boolean right2 =
         grid.isEmpty(col2 + 1, row2) &&
@@ -148,7 +191,7 @@ public class IShape {
         ++col2;
         return true;
       }
-   
+      //*******direction 2*************
     }else if (direction == 2){
       boolean right2 =
         grid.isEmpty(col2 + 1, row2) &&
@@ -169,7 +212,7 @@ public class IShape {
         ++col2;
         return true;
       }
-    
+    //*******direction 3*************
     }else if (direction == 3){
       boolean right0 =
         grid.isEmpty(col0 + 1, row0) &&
@@ -187,7 +230,7 @@ public class IShape {
   } 
   
   public boolean rotate() {
-      
+      // *************** direction 0 ************
       if (direction == 0) {
         boolean rotate0 = 
           grid.isEmpty(col0 - 1, row0 - 1)&&
@@ -208,7 +251,7 @@ public class IShape {
           direction = 1;
           return true;
         }
-    
+    // *************** direction 1 ************
       } else if (direction == 1) {
         boolean rotate0 = 
           grid.isEmpty(col0 + 1, row0 - 1)&&
@@ -229,7 +272,7 @@ public class IShape {
           direction = 2;
           return true;
         }
-       
+    // *************** direction 2 ************    
       } else if (direction == 2) {
         boolean rotate0 = 
           grid.isEmpty(col0 + 1, row0 + 1)&&
@@ -250,7 +293,7 @@ public class IShape {
           direction = 3;
           return true;
         }
-        
+    // *************** direction 3 ************    
       } else if (direction == 3) {
         boolean rotate0 = 
           grid.isEmpty(col0 - 1, row0 + 1)&&
@@ -272,10 +315,8 @@ public class IShape {
           return true;
         }
       }
+      //return true;
     return false;
   }
-  
+  // TODO: put the rest of the methods here!
 }
-
-
-
